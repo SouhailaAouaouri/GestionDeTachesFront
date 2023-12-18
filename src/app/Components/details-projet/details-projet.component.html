@@ -1,0 +1,79 @@
+<h1 class="text-center" style="text-align: center; color: darkcyan">Détails Projet</h1>
+
+<div class="card mb-4">
+  <div class="card-header">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h4 class="card-title">Titre du Projet: {{ projet.titre }}</h4>
+      <button type="button" class="btn rounded-pill btn-outline-danger" (click)="BackToListProjets()">
+        <strong ><i class="fa-solid fa-arrow-left"></i></strong> Retour
+
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="project-details mt-2">
+      <!-- Description-->
+      <div class="project-section">
+        <h5>Description du Projet:</h5>
+        <p>le projet ...................................</p>
+      </div>
+      <!-- Responsable-->
+      <div class="project-section">
+        <h5>Responsable du Projet:</h5>
+        <p>Mr. Habieb Mohamed</p>
+      </div>
+      <!-- developeurs-->
+      <div class="project-section">
+        <h5>Liste des Développeurs:</h5>
+        <ul>
+          <li>Développeur 1</li>
+          <li>Développeur 2</li>
+          <!-- Ajoutez d'autres développeurs ici -->
+        </ul>
+      </div>
+      <!-- tasks-->
+      <div class="project-section">
+        <h5>Liste des tâches:</h5>
+        <div class="lists-container">
+      <div class="example-container">
+        <h2>To Do</h2>
+        <div
+          cdkDropList
+          #todoList="cdkDropList"
+          [cdkDropListData]="todo"
+          [cdkDropListConnectedTo]="[inProgressList, doneList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let task of todo" cdkDrag>{{ task }}</div>
+        </div>
+      </div>
+      <div class="example-container">
+        <h2>In Progress</h2>
+        <div
+          cdkDropList
+          #inProgressList="cdkDropList"
+          [cdkDropListData]="inProgress"
+          [cdkDropListConnectedTo]="[todoList, doneList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let task of inProgress" cdkDrag>{{ task }}</div>
+        </div>
+      </div>
+      <div class="example-container">
+        <h2>Done</h2>
+        <div
+          cdkDropList
+          #doneList="cdkDropList"
+          [cdkDropListData]="done"
+          [cdkDropListConnectedTo]="[todoList, inProgressList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let task of done" cdkDrag>{{ task }}</div>
+        </div>
+      </div>
+      </div>
+        </div>
+      <!-- end tasks-->
+    </div>
+  </div>
+</div>
