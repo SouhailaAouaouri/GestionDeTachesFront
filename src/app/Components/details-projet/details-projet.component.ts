@@ -1,41 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef } from '@angular/core';
 import {Projet} from "../../Models/projet";
-import {MatDialog} from "@angular/material/dialog";
-import {TaskDetailsAdminComponent} from "../task-details-admin/task-details-admin.component";
 import {CdkDragDrop, moveItemInArray, transferArrayItem,CdkDrag,CdkDropList} from "@angular/cdk/drag-drop";
-
+import {Task} from "../../Models/task";
 @Component({
   selector: 'app-details-projet',
   templateUrl: './details-projet.component.html',
   styleUrls: ['./details-projet.component.css']
 })
 export class DetailsProjetComponent implements OnInit {
-  numTable: number =0 ;
-
+  task :Task= new Task();
   projet :Projet= new Projet();
-
+  developers: any[] = [
+    { nom: 'Nom1', prenom: 'Prenom1', specialite: 'Spécialité1', nbTachesEffectuees: 10, photoUrl: 'url_de_la_photo1.jpg' },
+    { nom: 'Nom2', prenom: 'Prenom2', specialite: 'Spécialité2', nbTachesEffectuees: 5, photoUrl: 'url_de_la_photo2.jpg' },
+    // Ajoutez d'autres développeurs ici
+  ];
   todo = ['Tâche 1', 'Tâche 2', 'Tâche 3'];
   inProgress = ['Tâche 4', 'Tâche 5'];
   done = ['Tâche 6', 'Tâche 7'];
 
-  constructor(public dialog: MatDialog) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-
-
   BackToListProjets() {
 
   }
-
-  showTaskDetails(id: number,numTable:number){
-    console.log("hello from task "+ id);
-    this.dialog.open(TaskDetailsAdminComponent, {
-      width:'80%',
-      data: {id: id, numTable:numTable}
-    });
-  }
-
   drop(event: CdkDragDrop<string[]>): void {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -50,10 +40,21 @@ export class DetailsProjetComponent implements OnInit {
     this.sortLists();
 
   }
-
   sortLists(): void {
     this.todo.sort();
     this.inProgress.sort();
     this.done.sort();
+  }
+
+  seeDetailsTask() {
+    console.log('see task details');
+    //create a modal
+
+
+
+  }
+
+  AffecterTask() {
+    console.log('affected task to developer');
   }
 }

@@ -1,36 +1,7 @@
-<!--&lt;!&ndash; task-details-modal.component.html &ndash;&gt;-->
-<!--<div class="modal-content">-->
-<!--  <h1>Hello i'am a task number {{ data.id }}</h1>-->
+<div *ngIf="affecter" class="form-group">
+  <h1>Affecter un ticket</h1>
+</div>
 
-
-<!--  <div class="modal-actions">-->
-<!--    &lt;!&ndash; task-details-modal.component.html &ndash;&gt;-->
-<!--    <button mat-button (click)="onActionSelected('non-effectue')" *ngIf="data.numTable===1||data.numTable===2">-->
-<!--      <i class="bx bx-user-plus"></i> Affecter la tâche non effectuée-->
-<!--    </button>-->
-
-<!--    <button mat-button (click)="onActionSelected('autre')"*ngIf="data.numTable===3||data.numTable===2">-->
-<!--      <i class="bx bx-show"></i> Visualiser les données-->
-<!--    </button>-->
-
-<!--  </div>-->
-<!--</div>-->
-<div class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
+<div *ngIf="details" class="form-group">
+  <h1>Détails du ticket</h1>
 </div>

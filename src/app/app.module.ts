@@ -39,6 +39,7 @@ import {DragDropModule} from "@angular/cdk/drag-drop";
     HttpClientModule,
     MatDialogModule,
     DragDropModule,
+
   ],
   providers: [AuthInspecterService],
   bootstrap: [AppComponent]

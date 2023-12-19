@@ -1,0 +1,21 @@
+/* Ajoutez ces styles au besoin */
+.example-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+.task-details {
+  flex-grow: 1;
+}
+
+.icons-container {
+  display: flex;
+  align-items: center;
+}
+
+.icons-container i {
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 18px;
+  color: #3498db;
+}

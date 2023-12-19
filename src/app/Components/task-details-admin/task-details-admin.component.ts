@@ -1,5 +1,5 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {Component, Inject, Input, OnInit} from '@angular/core';
+
 
 @Component({
   selector: 'app-task-details-admin',
@@ -8,12 +8,25 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 })
 export class TaskDetailsAdminComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+  @Input() data: any;
+  affecter:boolean=false;
+  details:boolean=false;
+
+  constructor() {}
 
   ngOnInit(): void {
+    if(this.data[1]=='Details')
+    {
+      this.details=true;
+      this.affecter=false;
+    }
+    else if(this.data[1]=='Affecter')
+    {
+      this.details=false;
+      this.affecter=true;
+    }
+
+
   }
 
-  onActionSelected(nonEffectue: string) {
-
-  }
 }
