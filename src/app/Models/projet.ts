@@ -4,4 +4,5 @@ export class Projet {
   description: any;
   listeTaches: any;
   members: any;
+  //atribut
 }
