@@ -190,8 +190,6 @@
   z-index: 1090;
   display: none;
   width: 80%;
-  max-width: 600px;
-  background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -200,21 +198,14 @@
 .modal-header {
   background-color: #03b0d4;
   color: #fff;
-  text-align: center;
-  padding: 15px;
+  padding: 10px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-/* Style pour le bouton de fermeture */
-.modal-header .btn-close {
-  color: #fff;
-}
-
 /* Style pour le corps de la modal */
 .modal-body {
-  padding: 20px;
-  text-align: center;
+  padding: 10px;
 }
 
 /* Style pour le pied de la modal */
@@ -236,3 +227,21 @@
 
 }
 
+/* add task */
+.rounded-pill {
+  border-radius: 50rem !important;
+}
+.btn-icon {
+  padding: 0;
+  width: calc(2.309375rem + 2px);
+  height: calc(2.309375rem + 2px);
+  display: inline-flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+}
+.btn-outline-primary {
+  color: #696cff;
+  border-color: #696cff;
+  background: transparent;
+}

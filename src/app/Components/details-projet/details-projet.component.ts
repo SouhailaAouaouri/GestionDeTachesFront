@@ -8,6 +8,10 @@ import {Task} from "../../Models/task";
   styleUrls: ['./details-projet.component.css']
 })
 export class DetailsProjetComponent implements OnInit {
+  affecterDeveloper: boolean = false;
+  detailsTask: boolean = false;
+  newTask: boolean = false;
+
   task :Task= new Task();
   projet :Projet= new Projet();
   developers: any[] = [
@@ -48,13 +52,17 @@ export class DetailsProjetComponent implements OnInit {
 
   seeDetailsTask() {
     console.log('see task details');
-    //create a modal
-
-
-
+    this.affecterDeveloper = false;
+    this.detailsTask = true;
   }
 
   AffecterTask() {
     console.log('affected task to developer');
+    this.affecterDeveloper = true;
+    this.detailsTask = false;
+  }
+  createTask() {
+    console.log('create task');
+    this.newTask = true;
   }
 }
