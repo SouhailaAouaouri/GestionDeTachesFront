@@ -7,16 +7,20 @@ import {HomeUserComponent} from "./Components/home-user/home-user.component";
 import {ListProjetUserComponent} from "./Components/list-projet-user/list-projet-user.component";
 import {ListTaskParProjetComponent} from "./Components/list-task-par-projet/list-task-par-projet.component";
 import {ListAllTasksUserComponent} from "./Components/list-all-tasks-user/list-all-tasks-user.component";
+import {DashboardUserComponent} from "./Components/dashboard-user/dashboard-user.component";
+import {DashboardAdminComponent} from "./Components/dashboard-admin/dashboard-admin.component";
 
 
 const routes: Routes = [
   { path: '', component:HomeComponent },
   { path: 'homeAdmin', component:HomeComponent,children:[
+      {path:'DashbordAdmin',component:DashboardAdminComponent},
       {path:'listProjet',component:ListprojetComponent},
       {path:'listTasks',component:ListTasksComponent},
 
     ]},
   { path: 'homeUser', component:HomeUserComponent,children:[
+      {path:'DashbordUser',component:DashboardUserComponent},
       {path:'listProjetUser',component:ListProjetUserComponent},
       {path:'listTasksParProject/:id',component:ListTaskParProjetComponent},
       {path:'listAllTasks',component:ListAllTasksUserComponent},

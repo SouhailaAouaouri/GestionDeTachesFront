@@ -18,6 +18,8 @@ import { HomeUserComponent } from './Components/home-user/home-user.component';
 import { ListProjetUserComponent } from './Components/list-projet-user/list-projet-user.component';
 import { ListAllTasksUserComponent } from './Components/list-all-tasks-user/list-all-tasks-user.component';
 import { ListTaskParProjetComponent } from './Components/list-task-par-projet/list-task-par-projet.component';
+import { DashboardAdminComponent } from './Components/dashboard-admin/dashboard-admin.component';
+import { DashboardUserComponent } from './Components/dashboard-user/dashboard-user.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { ListTaskParProjetComponent } from './Components/list-task-par-projet/li
     ListProjetUserComponent,
     ListAllTasksUserComponent,
     ListTaskParProjetComponent,
+    DashboardAdminComponent,
+    DashboardUserComponent,
 
   ],
   imports: [
