@@ -46,20 +46,14 @@
 <!-- list projet  -->
   <div id="grid" class="item-content animate__animated animate__fadeIn active" data-toggle-extra="tab-content">
     <div class="row">
-      <div class="col-lg-4 col-md-6" *ngFor="let projet of listProjet">
+      <div class="col-lg-4 col-md-6">
         <div class="card card-block card-stretch card-height">
           <div class="card-body">
-            <div class="d-flex align-items-center justify-content-between mb-4">
-              <!-- % of task completed -->
-              <div id="circle-progress-01" class="circle-progress-01 circle-progress circle-progress-primary" data-min-value="0" data-max-value="100" data-value="25" data-type="percent"></div>
-              <!-- % 3 icons 1 no task/in progress/ done  -->
-              <i class="ri-star-fill m-0 text-warning"></i>
-            </div>
-            <h5 class="mb-1">Titre du projet {{projet.titre}}</h5>
-            <p class="mb-3">Description:Preparing framework of block-based WordPress Theme.{{projet.description}}</p>
+            <h5 class="mb-1">Titre du projet </h5>
+            <p class="mb-3">Description:Preparing framework of block-based WordPress Theme.</p>
             <div class="d-flex align-items-center justify-content-between pt-3 border-top">
-              <div class="iq-media-group">
-              <a  (click)="seeTaskProjet(projet.id)" class="btn btn-white text-primary link-shadow">SEE</a>
+              <div class="iq-media-group" >
+              <a  (click)="seeTaskProjet()" class="btn btn-white text-primary link-shadow ">SEE</a>
             </div>
           </div>
         </div>
@@ -67,3 +61,25 @@
     </div>
   </div>
 </div>
+</div>
+<!-- list p avec for
+        <div class="col-lg-4 col-md-6" *ngFor="let projet of listProjet">
+        <div class="card card-block card-stretch card-height">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+<div id="circle-progress-01" class="circle-progress-01 circle-progress circle-progress-primary" data-min-value="0" data-max-value="100" data-value="25" data-type="percent"></div>
+<i class="ri-star-fill m-0 text-warning"></i>
+</div>
+<h5 class="mb-1">Titre du projet {{projet.titre}}</h5>
+<p class="mb-3">Description:Preparing framework of block-based WordPress Theme.{{projet.description}}</p>
+<div class="d-flex align-items-center justify-content-between pt-3 border-top">
+  <div class="iq-media-group">
+    <a  (click)="seeTaskProjet(projet.id)" class="btn btn-white text-primary link-shadow">SEE</a>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+-->
+

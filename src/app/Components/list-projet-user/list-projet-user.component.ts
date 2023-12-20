@@ -15,8 +15,8 @@ export class ListProjetUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  seeTaskProjet(id:number){
-    this.router.navigate(['homeUser/listTasksParProject/'+id]);
+  seeTaskProjet(){
+    this.router.navigate(['homeUser/listTasksParProject/'+1]);
 
   }
 
