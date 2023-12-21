@@ -10,47 +10,30 @@
         </div>
         <div class="card-body">
           <div class="table-responsive">
-            <table id="datatable" class="table data-table table-striped">
+            <table id="taskTable" class="display" style="width:100%">
               <thead>
-              <tr class="ligth">
-                <th>Name</th>
-                <th>Position</th>
-                <th>Office</th>
-                <th>Age</th>
-                <th>Start date</th>
-                <th>Salary</th>
+              <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Start Date</th>
+                <th>Due Date</th>
+                <th>Completed</th>
+                <!-- Add more columns as needed -->
               </tr>
               </thead>
               <tbody>
-              <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
+              <tr *ngFor="let task of tasks">
+                <td>{{ task.id }}</td>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.startDate }}</td>
+                <td>{{ task.dueDate }}</td>
+                <td>{{ task.completed }}</td>
+                <!-- Add more columns as needed -->
               </tr>
-              <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
-              </tr>              <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-                <td>2011/04/25</td>
-                <td>$320,800</td>
-              </tr>
-
               </tbody>
-              <tfoot>
-              </tfoot>
-            </table>
-          </div>
+            </table>          </div>
         </div>
       </div>
     </div>
