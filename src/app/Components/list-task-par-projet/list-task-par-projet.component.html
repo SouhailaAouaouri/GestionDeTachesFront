@@ -15,7 +15,8 @@
         (cdkDropListDropped)="drop($event)">
         <div class="example-box" *ngFor="let task of todo" cdkDrag>{{ task }}
           <div class="icons-container">
-            <i class="bx bx-show"></i>
+
+            <i class="fa fa-pencil-square-o" style="font-size:28px" aria-hidden="true"></i>
           </div>
 
         </div>
@@ -33,7 +34,7 @@
         (cdkDropListDropped)="drop($event)">
         <div class="example-box" *ngFor="let task of inProgress" cdkDrag>{{ task }}
           <div class="icons-container">
-            <i class="bx bx-show"></i>
+            <i class="fa fa-pencil-square-o" style="font-size:28px" aria-hidden="true"></i>
           </div>
         </div>
       </div>
@@ -51,9 +52,7 @@
         <div class="example-box" *ngFor="let task of done" cdkDrag>
           {{ task }}
           <div class="icons-container">
-            <div class="icons-container">
-              <i class="bx bx-show"></i>
-            </div>
+            <i class="fa fa-pencil-square-o" style="font-size:28px" aria-hidden="true"></i>
           </div>
 
         </div>
