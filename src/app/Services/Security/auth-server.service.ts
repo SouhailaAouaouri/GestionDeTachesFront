@@ -13,4 +13,5 @@ export class AuthServerService {
 
   login(l:Login){
     return this.http.post('http://localhost:5000/login',l);
-  }}
+  }
+}

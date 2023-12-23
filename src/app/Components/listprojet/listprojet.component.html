@@ -34,3 +34,86 @@
       </div>
     </div>
   </div>
+
+  <!-- Modal 1 : new project-->
+  <div class="modal fade" role="dialog" aria-modal="true" id="new-project-modal">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header d-block text-center pb-3 border-bttom">
+          <h3 class="modal-title" id="exampleModalCenterTitle01">New Project</h3>
+        </div>
+        <div class="modal-body">
+          <form  class="mb-3" (ngSubmit)="onSubmit()" [formGroup]="formService.formGroupAddProject">
+          <div class="row">
+            <!-- title -->
+            <div class="col-lg-12">
+              <div class="form-group mb-3">
+                <label  class="h5">Project Name</label>
+                <input type="text" class="form-control" formControlName="nameP"  placeholder="Project Name"
+                [ngClass]="{ 'is-invalid':formService.nameP && formService.nameP.errors && formService.nameP.touched}"/>
+              <div class="invalid-feedback" *ngIf="formService.nameP && formService.nameP.errors">
+                <div *ngIf="formService.nameP.errors.required">
+                  Please enter the title of your project*
+                </div>
+                <div *ngIf="formService.nameP.errors.minlength">
+                  The title of project must be at least 3 characters long
+                </div>
+                <div  *ngIf="formService.nameP.errors.maxlength">
+                  The title of project cannot exceed 50 characters*
+                </div>
+              </div>
+                <div class="invalid-feedback" *ngIf="formService.nameP && formService.nameP.hasError('pattern')">
+                  The title of project must be a lettre*
+                </div>
+              </div>
+
+            </div>
+            <!-- description -->
+            <div class="col-lg-12">
+              <div class="form-group mb-3">
+                <label  class="h5">Description</label>
+                <textarea
+                  type="text"
+                  formControlName="descriptionP"
+                  placeholder="Describe your project"
+                  class="form-control"
+                  row="5"
+                  [ngClass]="{ 'is-invalid':formService.descriptionP && formService.descriptionP.errors && formService.descriptionP.touched}"
+                >
+                </textarea>
+                <div class="invalid-feedback" *ngIf="formService.descriptionP && formService.descriptionP.errors">
+                  <div *ngIf="formService.descriptionP.errors.required"> Please enter a description for your project*</div>
+                </div>
+              </div>
+            </div>
+            <!-- owner -->
+            <div class="col-lg-12">
+              <div class="form-group mb-3">
+                <label  class="h5">Owner </label>
+                <select name="type" class="selectpicker form-control" data-style="py-0">
+                  <option>Owner 1</option>
+                  <option>Owner 2</option>
+                  <option>Owner 3</option>
+                </select>
+              </div>
+            </div>
+            <!-- btn -->
+            <div class="col-lg-12">
+              <div class="d-flex flex-wrap align-items-center justify-content-center mt-2">
+                <button class="btn btn-primary mr-3" type="submit" data-dismiss="modal">Save</button>
+                <button class="btn btn-danger" (click)="onCancel()" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="alert-container">
+    <!-- Alert success -->
+    <div class="alert alert-success" role="alert" *ngIf="showsuccessmessage">Project added successfully</div>
+
+    <!-- Alert error -->
+    <div class="alert alert-danger" role="alert" *ngIf="showerrormessage">Error while adding project</div>
+  </div>

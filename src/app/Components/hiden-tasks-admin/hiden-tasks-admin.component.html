@@ -1,5 +1,5 @@
 <div class="header-title">
-  <h4>Tout les Tâches  </h4>
+  <h4>Tasks Hidden  </h4>
 </div>
 <br>
 <div class="container-fluid">
@@ -19,6 +19,7 @@
                 <th>Start Date</th>
                 <th>Due Date</th>
                 <th>Completed</th>
+                <th>Actions</th>
                 <!-- Add more columns as needed -->
               </tr>
               </thead>
@@ -30,6 +31,9 @@
                 <td>{{ task.startDate }}</td>
                 <td>{{ task.dueDate }}</td>
                 <td>{{ task.completed }}</td>
+                <td>
+                  <button class="btn btn-sm btn-primary " (click)="cancelHidden(task.id)"><i class="ri-eye-line pr-0"></i>Show</button>
+                  </td>
                 <!-- Add more columns as needed -->
               </tr>
               </tbody>

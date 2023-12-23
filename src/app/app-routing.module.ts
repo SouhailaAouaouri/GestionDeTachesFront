@@ -10,16 +10,19 @@ import {ListAllTasksUserComponent} from "./Components/list-all-tasks-user/list-a
 import {DashboardUserComponent} from "./Components/dashboard-user/dashboard-user.component";
 import {DashboardAdminComponent} from "./Components/dashboard-admin/dashboard-admin.component";
 import {ProjectDetailsComponent} from "./Components/project-details/project-details.component";
-
+import {LoginComponent} from "./Components/login/login.component";
+import {HidenTasksAdminComponent} from "./Components/hiden-tasks-admin/hiden-tasks-admin.component";
+import {EmployeesAdminComponent} from "./Components/employees-admin/employees-admin.component";
 
 const routes: Routes = [
-  { path: '', component:HomeComponent },
+  { path: '', component:LoginComponent},
   { path: 'homeAdmin', component:HomeComponent,children:[
       {path:'DashbordAdmin',component:DashboardAdminComponent},
       {path:'listProjet',component:ListprojetComponent},
       {path:'detailsProject/:id',component:ProjectDetailsComponent},
       {path:'listTasks',component:ListTasksComponent},
-
+      {path:'listTasksHidenForAdmin',component:HidenTasksAdminComponent},
+      {path:'employees',component:EmployeesAdminComponent},
 
     ]},
   { path: 'homeUser', component:HomeUserComponent,children:[
@@ -30,10 +33,6 @@ const routes: Routes = [
 
 
     ]},
-
-
-
-
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

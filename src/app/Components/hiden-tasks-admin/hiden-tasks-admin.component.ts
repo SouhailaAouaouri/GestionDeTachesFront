@@ -1,12 +1,11 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
 declare var $: any; // Import jQuery
-
 @Component({
-  selector: 'app-list-tasks',
-  templateUrl: './list-tasks.component.html',
-  styleUrls: ['./list-tasks.component.css']
+  selector: 'app-hiden-tasks-admin',
+  templateUrl: './hiden-tasks-admin.component.html',
+  styleUrls: ['./hiden-tasks-admin.component.css']
 })
-export class ListTasksComponent implements OnInit, AfterViewInit {
+export class HidenTasksAdminComponent implements OnInit, AfterViewInit {
   tasks: any[] = [];
   constructor() { }
 
@@ -55,4 +54,8 @@ export class ListTasksComponent implements OnInit, AfterViewInit {
     });
   }
 
+  cancelHidden(id:number) {
+
+  }
 }
+

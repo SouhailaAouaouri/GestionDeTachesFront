@@ -21,6 +21,9 @@ import { ListTaskParProjetComponent } from './Components/list-task-par-projet/li
 import { DashboardAdminComponent } from './Components/dashboard-admin/dashboard-admin.component';
 import { DashboardUserComponent } from './Components/dashboard-user/dashboard-user.component';
 import { ProjectDetailsComponent } from './Components/project-details/project-details.component';
+import { LoginComponent } from './Components/login/login.component';
+import { HidenTasksAdminComponent } from './Components/hiden-tasks-admin/hiden-tasks-admin.component';
+import { EmployeesAdminComponent } from './Components/employees-admin/employees-admin.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,9 @@ import { ProjectDetailsComponent } from './Components/project-details/project-de
     DashboardAdminComponent,
     DashboardUserComponent,
     ProjectDetailsComponent,
+    LoginComponent,
+    HidenTasksAdminComponent,
+    EmployeesAdminComponent,
 
   ],
   imports: [

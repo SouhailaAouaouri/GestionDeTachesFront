@@ -7,58 +7,83 @@ import {FormBuilder, FormControl, Validators} from '@angular/forms';
 export class FormControlerService {
 
   constructor(private fb: FormBuilder,
-              private fbProfil: FormBuilder) { }
+              private fbAddProject: FormBuilder,
+              private fbAddTask: FormBuilder,
+              private fbAddEmp: FormBuilder,
+
+  ) { }
 
   formGroupLogin = this.fb.group({
     email: ['', Validators.required],
     password: ['', Validators.required],
-    isPatient: new FormControl(false)
   });
-
-  formGroupProfil = this.fbProfil.group({
-    nomProfil: ['', Validators.required],
-    prenomProfil: ['', Validators.required],
-    emailProfil: ['', Validators.required],
-    telProfil: ['', Validators.required],
-    adresseProfil: ['', Validators.required],
-    specialiteProfil: ['', Validators.required],
+  formGroupAddProject = this.fbAddProject.group({
+    nameP: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20),Validators.pattern('[a-zA-Z ]*')]],
+    descriptionP: ['', [Validators.required]],
+    ownerP: ['', Validators.required],
+  });
+  formGroupAddTask = this.fbAddTask.group({
+    nameT: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30),Validators.pattern('[a-zA-Z ]*')]],
+    descriptionT: ['', [Validators.required]],
+    dateStartT: ['', Validators.required],
+    periortyT: ['', Validators.required],
+  });
+  formGroupAddEmp = this.fbAddEmp.group({
+    nameEmp: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20),Validators.pattern('[a-zA-Z ]*')]],
+    emailEmp: ['', [Validators.required, Validators.email]],
+    phoneEmp: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8),Validators.pattern('[0-9]*')]],
+    passwordEmp: ['', [Validators.required,Validators.minLength(3), Validators.maxLength(20)]],
 
   });
+  /* add employee controle */
+  get nameEmp() {
+    return this.formGroupAddEmp.get('nameEmp');
+  }
+  get emailEmp() {
+    return this.formGroupAddEmp.get('emailEmp');
+  }
+  get phoneEmp() {
+    return this.formGroupAddEmp.get('phoneEmp');
+  }
+  get passwordEmp() {
+    return this.formGroupAddEmp.get('passwordEmp');
+  }
+  /* fin add employee controle */
 
+
+  /* add project controle */
+  get nameP() {
+    return this.formGroupAddProject.get('nameP');
+  }
+
+  get descriptionP() {
+    return this.formGroupAddProject.get('descriptionP');
+  }
+   get ownerP() {
+    return this.formGroupAddProject.get('ownerP');
+   }
+/* fin add project controle */
   /* login controle */
   get email() {
     return this.formGroupLogin.get('email');
   }
-
   get password() {
     return this.formGroupLogin.get('password');
   }
-
-  get isPatient() {
-    return this.formGroupLogin.get('isPatient');
-  }
   /* fin login controle */
-  /*  profil controle */
-  get nomProfil() {
-    return this.formGroupProfil.get('nomProfil');
+  /* add task */
+  get nameT() {
+    return this.formGroupAddTask.get('nameT');
   }
+  get descriptionT() {
+    return this.formGroupAddTask.get('descriptionT');
+  }
+  get dateStartT() {
+    return this.formGroupAddTask.get('dateStartT');
+  }
+  get periortyT() {
+    return this.formGroupAddTask.get('periortyT');
+  }
+  /* fin add task */
 
-  get prenomProfil() {
-    return this.formGroupProfil.get('prenomProfil');
-  }
-  get emailProfil() {
-    return this.formGroupProfil.get('emailProfil');
-  }
-
-  get phoneProfil() {
-    return this.formGroupProfil.get('telProfil');
-  }
-  get adresseProfil() {
-    return this.formGroupProfil.get('adresseProfil');
-  }
-
-  get specialiteProfil() {
-    return this.formGroupProfil.get('specialiteProfil');
-  }
-  /* fin profil controle */
 }

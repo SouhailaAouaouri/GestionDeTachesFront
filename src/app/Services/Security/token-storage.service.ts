@@ -15,6 +15,8 @@ export class TokenStorageService {
 
   public savedata(data: any): void {
     localStorage.setItem(TOKEN_KEY, data.access_token);
+    localStorage.setItem(USER_KEY, data.id);
+    localStorage.setItem(ROLE_KEY, data.role);
   }
 
   handle(data:any) {
