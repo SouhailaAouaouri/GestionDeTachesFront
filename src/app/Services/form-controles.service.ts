@@ -20,7 +20,6 @@ export class FormControlerService {
   formGroupAddProject = this.fbAddProject.group({
     nameP: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20),Validators.pattern('[a-zA-Z ]*')]],
     descriptionP: ['', [Validators.required]],
-    ownerP: ['', Validators.required],
   });
   formGroupAddTask = this.fbAddTask.group({
     nameT: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30),Validators.pattern('[a-zA-Z ]*')]],

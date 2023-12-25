@@ -1,11 +1,16 @@
 export class Task {
     id: any;
-    titre: any;
+    title: any;
     description: any;
     status: any;
-    label: any;
+    labels: any;
     priority: any;
     dueDate: any;
     members: any;
+    completed: any;
+    projectId: any;
+    projectName: any;
+    startDate: any;
+
 }
 

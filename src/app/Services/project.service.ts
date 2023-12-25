@@ -16,10 +16,10 @@ export class ProjectService {
   }
 
   deleteProject(id: number) {
-    return this.http.delete('/'+id);
+    return this.http.delete(this.apiUrl+'/'+id);
   }
   getProjectById(id: number) {
-    return this.http.get('/'+id);
+    return this.http.get(this.apiUrl+'/'+id);
   }
   addProject(project :Projet) {
     return this.http.post(this.apiUrl,project);

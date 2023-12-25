@@ -14,6 +14,7 @@ export class ListprojetComponent implements OnInit {
 
   project:Projet=new Projet();
   listProject:Projet[]=[];
+  editProject:Projet=new Projet();
 
   constructor(private router :Router,
                public formService :FormControlerService,
@@ -27,23 +28,21 @@ export class ListprojetComponent implements OnInit {
     }
     );
   }
-
   seeProject(id: number) {
+    console.log('id : ', id);
     this.router.navigate(['homeAdmin/detailsProject/',id]);
-
-
   }
 
   onSubmit() {
     if (this.formService.formGroupAddProject.valid) {
       console.log("Valid form");
-      console.log(this.formService.formGroupAddProject.value);
       this.project.description = this.formService.formGroupAddProject.value.descriptionP;
-      this.project.name = this.formService.formGroupAddProject.value.nomP;
+      this.project.name = this.formService.formGroupAddProject.value.nameP;
       console.log('project : ', this.project);
       this.projectService.addProject(this.project).subscribe(data => {
           console.log('data : ', data);
           this.formService.formGroupAddProject.reset();
+          this.project = new Projet();
           window.location.reload();
         }, error => {
           console.log('error : ', error);
@@ -52,6 +51,7 @@ export class ListprojetComponent implements OnInit {
       );
     } else {
       console.log("Invalid form");
+      console.log(this.formService.formGroupAddProject.controls.validate);
       this.validateAllFormFields(this.formService.formGroupAddProject);
     }
 
@@ -68,29 +68,47 @@ export class ListprojetComponent implements OnInit {
   }
   onCancel() {
     this.formService.formGroupAddProject.reset();
+    this.editProject = new Projet();
+    this.project = new Projet();
 
   }
 
   deleteProject(id: number) {
     this.projectService.deleteProject(id).subscribe(()=> {
       console.log('success delete !');
+      window.location.reload();
     }, error => {
       console.log('error : ', error);
     }
     );
   }
+getProjectById(id: number) {
+    this.projectService.getProjectById(id).subscribe(data => {
+        console.log('data : ', data);
+        this.editProject = data as Projet;
+        console.log('editProject : ', this.editProject);
+      this.formService.formGroupAddProject.patchValue({
+        nameP: this.editProject.name,
+        descriptionP: this.editProject.description,
+      });
+      }, error => {
+        console.log('error : ', error);
 
+      }
+    );
+}
   updateProject(id: number) {
     if (this.formService.formGroupAddProject.valid) {
       console.log("Valid form");
-      console.log(this.formService.formGroupAddProject.value);
-      this.project.description = this.formService.formGroupAddProject.value.descriptionP;
-      this.project.name = this.formService.formGroupAddProject.value.nomP;
-      console.log('project : ', this.project);
-      this.projectService.updateProject(this.project).subscribe(data => {
-          console.log('data : ', data);
+      console.log('form group value : ',this.formService.formGroupAddProject.value);
+      this.editProject.description = this.formService.formGroupAddProject.value.descriptionP;
+      this.editProject.name = this.formService.formGroupAddProject.value.nameP;
+      console.log('project to update : ', this.editProject);
+      this.projectService.updateProject(this.editProject).subscribe(data => {
+          console.log('data api: ', data);
           this.formService.formGroupAddProject.reset();
           window.location.reload();
+
 
         }, error => {
           console.log('error : ', error);
@@ -102,6 +120,4 @@ export class ListprojetComponent implements OnInit {
       this.validateAllFormFields(this.formService.formGroupAddProject);
     }
   }
-
-
 }

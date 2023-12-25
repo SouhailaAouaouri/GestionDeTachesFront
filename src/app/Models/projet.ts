@@ -4,6 +4,6 @@ export class Projet {
   description: any;
   listeTaches: any;
   members: any;
-  //tasks:any [];
+  tasks:any;
 
 }

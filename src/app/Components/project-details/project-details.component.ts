@@ -4,6 +4,8 @@ import {FormControlerService} from "../../Services/form-controles.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProjectService} from "../../Services/project.service";
 import {Projet} from "../../Models/projet";
+import {Task} from "../../Models/task";
+import {TaskService} from "../../Services/task.service";
 
 @Component({
   selector: 'app-project-details',
@@ -13,19 +15,26 @@ import {Projet} from "../../Models/projet";
 export class ProjectDetailsComponent implements OnInit {
   projetId: any;
   project :Projet=new Projet();
+  listTask: Task[]=new Array<Task>();
 
   constructor(private projectService:ProjectService,
+                private taskService:TaskService,
               private route :ActivatedRoute,
               public formService :FormControlerService,
   ) { }
   ngOnInit(): void {
+    this.project=new Projet();
+
     this.route.params.subscribe(params => {
       const id = params['id'];
       this.projetId = id;
-    this.projectService.getProjectById(1).subscribe(data => {
-      console.log('data : ', data);
+
+    this.projectService.getProjectById(this.projetId).subscribe(data => {
       this.project = data as Projet;
       console.log('project  :',this.project);
+        this.listTask = this.project.tasks;
+      console.log('listTask  :',this.listTask);
+
     });
   });
 
@@ -54,21 +63,8 @@ export class ProjectDetailsComponent implements OnInit {
     }
 
   }
-  onSubmitProject() {
-    if(this.formService.formGroupAddProject.valid){
-      console.log("Valid form");
-      console.log(this.formService.formGroupAddProject.value);
-      this.formService.formGroupAddProject.reset();
-    }else {
-      console.log("Invalid form");
-      this.validateAllFormFields(this.formService.formGroupAddProject);
-
-    }
-  }
-
   onClear() {
     this.formService.formGroupAddTask.reset();
-    this.formService.formGroupAddProject.reset();
   }
 
   assignTask(projectId: number, taskId: number) {
@@ -79,4 +75,19 @@ export class ProjectDetailsComponent implements OnInit {
 
   }
 
+  addMember(number: number) {
+
+  }
+
+  getTaskById(id: any) {
+    this.taskService.taskById(id).subscribe(data => {
+      console.log('task : ', data);
+    }
+    );
+
+  }
+
+  deleteTask(number: number) {
+
+  }
 }
