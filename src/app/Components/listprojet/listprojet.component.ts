@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {FormControlerService} from "../../Services/form-controles.service";
 import {FormControl, FormGroup} from "@angular/forms";
+import {Projet} from "../../Models/projet";
+import {ProjectService} from "../../Services/project.service";
 
 @Component({
   selector: 'app-listprojet',
@@ -10,16 +12,20 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class ListprojetComponent implements OnInit {
 
-  showsuccessmessage: boolean=false;
-  showerrormessage: boolean=false;
+  project:Projet=new Projet();
+  listProject:Projet[]=[];
 
   constructor(private router :Router,
                public formService :FormControlerService,
+              private projectService :ProjectService,
               ) { }
 
   ngOnInit(): void {
-    this.showerrormessage = false;
-    this.showsuccessmessage = false;
+    this.projectService.getProjectList().subscribe(data => {
+      console.log('data : ', data);
+      this.listProject = data as Projet[];
+    }
+    );
   }
 
   seeProject(id: number) {
@@ -29,17 +35,23 @@ export class ListprojetComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.formService.formGroupAddProject.valid){
+    if (this.formService.formGroupAddProject.valid) {
       console.log("Valid form");
       console.log(this.formService.formGroupAddProject.value);
-      this.formService.formGroupAddProject.reset();
-      this.showerrormessage = false;
-      this.showsuccessmessage = true;
+      this.project.description = this.formService.formGroupAddProject.value.descriptionP;
+      this.project.name = this.formService.formGroupAddProject.value.nomP;
+      console.log('project : ', this.project);
+      this.projectService.addProject(this.project).subscribe(data => {
+          console.log('data : ', data);
+          this.formService.formGroupAddProject.reset();
+          window.location.reload();
+        }, error => {
+          console.log('error : ', error);
 
-    }else {
+        }
+      );
+    } else {
       console.log("Invalid form");
-      this.showerrormessage = true;
-      this.showsuccessmessage = false;
       this.validateAllFormFields(this.formService.formGroupAddProject);
     }
 
@@ -58,4 +70,38 @@ export class ListprojetComponent implements OnInit {
     this.formService.formGroupAddProject.reset();
 
   }
+
+  deleteProject(id: number) {
+    this.projectService.deleteProject(id).subscribe(()=> {
+      console.log('success delete !');
+    }, error => {
+      console.log('error : ', error);
+    }
+    );
+  }
+
+  updateProject(id: number) {
+    if (this.formService.formGroupAddProject.valid) {
+      console.log("Valid form");
+      console.log(this.formService.formGroupAddProject.value);
+      this.project.description = this.formService.formGroupAddProject.value.descriptionP;
+      this.project.name = this.formService.formGroupAddProject.value.nomP;
+      console.log('project : ', this.project);
+      this.projectService.updateProject(this.project).subscribe(data => {
+          console.log('data : ', data);
+          this.formService.formGroupAddProject.reset();
+          window.location.reload();
+
+        }, error => {
+          console.log('error : ', error);
+
+        }
+      );
+    } else {
+      console.log("Invalid form");
+      this.validateAllFormFields(this.formService.formGroupAddProject);
+    }
+  }
+
+
 }

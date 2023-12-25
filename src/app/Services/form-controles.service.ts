@@ -14,7 +14,7 @@ export class FormControlerService {
   ) { }
 
   formGroupLogin = this.fb.group({
-    email: ['', Validators.required],
+    username: ['', Validators.required],
     password: ['', Validators.required],
   });
   formGroupAddProject = this.fbAddProject.group({
@@ -64,8 +64,8 @@ export class FormControlerService {
    }
 /* fin add project controle */
   /* login controle */
-  get email() {
-    return this.formGroupLogin.get('email');
+  get username() {
+    return this.formGroupLogin.get('username');
   }
   get password() {
     return this.formGroupLogin.get('password');

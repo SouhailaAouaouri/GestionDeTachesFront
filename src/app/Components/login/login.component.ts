@@ -12,7 +12,7 @@ import {FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  role : string = 'admin';
+  role= this.tokenStorage.getRole();
   login :Login = new Login();
   showsuccessmessage: boolean=false;
   showerrormessage: boolean=false;
@@ -38,17 +38,39 @@ export class LoginComponent implements OnInit {
   onSubmit() {
 
     if (this.formService.formGroupLogin.valid) {
-      this.login.email = this.formService.formGroupLogin.value.email;
+      this.login.username = this.formService.formGroupLogin.value.username;
       this.login.password = this.formService.formGroupLogin.value.password;
-      console.log('login :',this.login);
-      console.log('role : ',this.role);
-      if(this.role==='user'){
-        this.router.navigate(['homeUser/DashbordUser']);
-      }else if(this.role==='admin') {
-        this.router.navigate(['homeAdmin/DashbordAdmin']);
-      }
+      console.log('login :', this.login);
+
+      this.authService.login(this.login).subscribe(
+        data => {
+          console.log('data :', data);
+          this.showerrormessage = false;
+          this.showsuccessmessage = true;
+          setTimeout(() => {
+            if(this.role==="user")
+            {
+              this.router.navigate(['homeUser/DashbordUser']);
+
+            }else if(this.role==="admin")
+            {
+              this.router.navigate(['homeAdmin/DashbordAdmin']);
+
+            }
+          }, 1000);
+          this.tokenStorage.savedata(data);
+          this.onClear();
     }
-    else {
+    , error => {
+          console.log('error :',error);
+          this.showerrormessage = true;
+          this.showsuccessmessage = false;
+          setTimeout(() => {
+            this.showerrormessage = false,2000;
+          });
+        }
+      );
+    } else {
       this.validateAllFormFields(this.formService.formGroupLogin);
     }
   }

@@ -1,8 +1,9 @@
 export class Projet {
   id: any;
-  titre: any;
+  name: any;
   description: any;
   listeTaches: any;
   members: any;
-  //atribut
+  //tasks:any [];
+
 }
