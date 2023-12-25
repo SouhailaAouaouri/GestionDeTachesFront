@@ -54,6 +54,7 @@
                     <div>
                       <h5 class="mb-2">{{t.title}} </h5>
                     </div>
+
                   <div class="media align-items-center mt-md-0 mt-3">
                     <a *ngIf="t.completed=='false'" class="btn bg-success-light mr-3" (click)="assignTask(t.projectId,t.id)">Marked as done</a>
                     <a *ngIf="t.completed=='true'" class="btn bg-success-light mr-3" >Done</a>
@@ -76,13 +77,13 @@
                   <div class="row">
                     <div class="form-group mb-3 position-relative col-lg-12">
                     <label class="h5">Task Name</label>
-                    <input type="text" class="form-control bg-white" placeholder="Design landing page of webkit" readonly>
+                    <input type="text" class="form-control bg-white" placeholder="Design landing page of webkit" [value]="t.title" readonly>
                   </div>
                   </div>
                   <div class="row">
                   <div class="form-group mb-3 position-relative col-lg-12">
                     <label class="h5">Task Description</label>
-                    <textarea type="text" class="form-control bg-white" placeholder="Design landing page of webkit" readonly>
+                    <textarea type="text" class="form-control bg-white" placeholder="Design landing page of webkit" [value]="t.description" readonly>
                     </textarea>
                   </div>
                   </div>
