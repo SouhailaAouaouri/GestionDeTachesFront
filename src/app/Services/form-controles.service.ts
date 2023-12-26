@@ -25,7 +25,6 @@ export class FormControlerService {
     nameT: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30),Validators.pattern('[a-zA-Z ]*')]],
     descriptionT: ['', [Validators.required]],
     dateStartT: ['', Validators.required],
-    periortyT: ['', Validators.required],
   });
   formGroupAddEmp = this.fbAddEmp.group({
     nameEmp: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20),Validators.pattern('[a-zA-Z ]*')]],

@@ -14,29 +14,33 @@ import {TaskService} from "../../Services/task.service";
 })
 export class ProjectDetailsComponent implements OnInit {
   projetId: any;
-  project :Projet=new Projet();
-  listTask: Task[]=new Array<Task>();
+  project: Projet = new Projet();
+  listTask: Task[] = new Array<Task>();
+  task: Task = new Task();
+  editTask: Task = new Task();
 
-  constructor(private projectService:ProjectService,
-                private taskService:TaskService,
-              private route :ActivatedRoute,
-              public formService :FormControlerService,
-  ) { }
+  constructor(private projectService: ProjectService,
+              private taskService: TaskService,
+              private route: ActivatedRoute,
+              public formService: FormControlerService,
+  ) {
+  }
+
   ngOnInit(): void {
-    this.project=new Projet();
+    this.project = new Projet();
 
     this.route.params.subscribe(params => {
       const id = params['id'];
       this.projetId = id;
 
-    this.projectService.getProjectById(this.projetId).subscribe(data => {
-      this.project = data as Projet;
-      console.log('project  :',this.project);
+      this.projectService.getProjectById(this.projetId).subscribe(data => {
+        this.project = data as Projet;
+        console.log('project  :', this.project);
         this.listTask = this.project.tasks;
-      console.log('listTask  :',this.listTask);
+        console.log('listTask  :', this.listTask);
 
+      });
     });
-  });
 
   }
 
@@ -44,33 +48,45 @@ export class ProjectDetailsComponent implements OnInit {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
       if (control instanceof FormControl) {
-        control.markAsTouched({ onlySelf: true });
+        control.markAsTouched({onlySelf: true});
       } else if (control instanceof FormGroup) {
         this.validateAllFormFields(control);
       }
     });
   }
-  onSubmitTask() {
-    if(this.formService.formGroupAddTask.valid){
-      console.log("Valid form");
-      console.log(this.formService.formGroupAddTask.value);
-      this.formService.formGroupAddTask.reset();
 
-    }else {
+  onSubmitTask() {
+    if (this.formService.formGroupAddTask.valid) {
+      console.log("Valid form");
+      this.task.description = this.formService.formGroupAddTask.value.descriptionT;
+      this.task.title = this.formService.formGroupAddTask.value.nameT;
+      this.task.projectId = this.projetId;
+      console.log('task : ', this.task);
+      this.taskService.addTask(this.task).subscribe(data => {
+        console.log('succses add task');
+        console.log('data : ', data);
+        this.listTask.push(data as Task);
+        console.log('listTask : ', this.listTask);
+        this.formService.formGroupAddTask.reset();
+        window.location.reload();
+      });
+
+    } else {
       console.log("Invalid form");
       this.validateAllFormFields(this.formService.formGroupAddTask);
 
     }
 
   }
+
   onClear() {
     this.formService.formGroupAddTask.reset();
   }
 
   assignTask(projectId: number, taskId: number) {
-    this.projectService.assignTask(projectId,taskId).subscribe(data => {
+    this.projectService.assignTask(projectId, taskId).subscribe(data => {
       console.log('succses assign task');
-      console.log('data : ', data);
+      window.location.reload();
     });
 
   }
@@ -81,13 +97,36 @@ export class ProjectDetailsComponent implements OnInit {
 
   getTaskById(id: any) {
     this.taskService.taskById(id).subscribe(data => {
-      console.log('task : ', data);
+        this.task = data as Task;
+        console.log('task : ', this.task);
+      });
+
+  }
+
+  deleteTask(id: number) {
+    this.taskService.deleteTask(id).subscribe(data => {
+      console.log('task deleted');
+      window.location.reload();
+    });
+
+  }
+
+  updateTask() {
+    if (this.formService.formGroupAddTask.valid) {
+      this.editTask.description = this.formService.formGroupAddTask.value.descriptionT;
+      this.editTask.title = this.formService.formGroupAddTask.value.nameT;
+      this.editTask.projectId = this.projetId;
+      this.editTask.completed=true;
+
+      console.log('task : ', this.editTask);
+      this.taskService.updateTask(this.editTask).subscribe(data => {
+        console.log('task updated');
+        window.location.reload();
+      });
+    } else {
+      console.log("Invalid form");
+      this.validateAllFormFields(this.formService.formGroupAddTask);
     }
-    );
-
   }
 
-  deleteTask(number: number) {
-
-  }
 }
