@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
 
     if (this.formService.formGroupLogin.valid) {
-      this.login.username = this.formService.formGroupLogin.value.username;
+      this.login.userName = this.formService.formGroupLogin.value.username;
       this.login.password = this.formService.formGroupLogin.value.password;
       console.log('login :', this.login);
 
@@ -47,18 +47,18 @@ export class LoginComponent implements OnInit {
           console.log('data :', data);
           this.showerrormessage = false;
           this.showsuccessmessage = true;
+          this.tokenStorage.savedata(data);
           setTimeout(() => {
-            if(this.role==="user")
+            if(this.role==="USER")
             {
               this.router.navigate(['homeUser/DashbordUser']);
 
-            }else if(this.role==="admin")
+            }else if(this.role==="ADMIN")
             {
               this.router.navigate(['homeAdmin/DashbordAdmin']);
 
             }
           }, 1000);
-          this.tokenStorage.savedata(data);
           this.onClear();
     }
     , error => {

@@ -18,7 +18,7 @@
                               formControlName="username"
                               [ngClass]="{ 'is-invalid':formService.username && formService.username.errors && formService.username.touched}"
                               class="floating-input form-control" type="email" placeholder=" ">
-                            <label>Email</label>
+                            <label>Username</label>
                             <div class="invalid-feedback" *ngIf="formService.username && formService.username.hasError('required')">
                               Please enter username*
                             </div>

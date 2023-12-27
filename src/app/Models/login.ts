@@ -1,6 +1,6 @@
 export class Login {
 
-  username:any
+  userName:any
   password:any;
   role:any;
 }

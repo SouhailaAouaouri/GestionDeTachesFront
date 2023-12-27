@@ -16,8 +16,8 @@
 
     <!-- employee list -->
     <div id="grid" class="item-content animate__animated animate__fadeIn active" data-toggle-extra="tab-content">
-      <div class="row">
-        <div class="col-lg-4 col-md-6">
+      <div class="row" >
+        <div class="col-lg-4 col-md-6" *ngFor="let m of listMembers">
           <div class="card-transparent card-block card-stretch card-height">
             <div class="card-body text-center p-0">
               <div class="item">
@@ -25,55 +25,13 @@
                   <img src="assets/images/user/01.jpg" class="img-fluid rounded-circle avatar-90 m-auto" alt="image">
                 </div>
                 <div class="odr-content rounded">
-                  <h4 class="mb-2">Ruben Franci</h4>
-                  <p class="mb-1">Developer</p>
-                  <p class="mb-3">rubenfranci@gmail.com</p>
+                  <h4 class="mb-2">{{m.username}} {{m.firstname}} {{m.lastname}}</h4>
+                  <p class="mb-1">Developer Role {{m.role}}</p>
+                  <p class="mb-3">rubenfranci@gmail.com {{m.email}}</p>
                   <ul class="list-unstyled mb-3">
-                    <li class="bg-secondary-light rounded-circle iq-card-icon-small mr-4"><i class="ri-mail-open-line m-0"></i></li>
-                    <li class="bg-primary-light rounded-circle iq-card-icon-small mr-4"><i class="ri-chat-3-line m-0"></i></li>
-                    <li class="bg-success-light rounded-circle iq-card-icon-small"><i class="ri-phone-line m-0"></i></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="card-transparent card-block card-stretch card-height">
-            <div class="card-body text-center p-0">
-              <div class="item">
-                <div class="odr-img">
-                  <img src="assets/images/user/02.jpg" class="img-fluid rounded-circle avatar-90 m-auto" alt="image">
-                </div>
-                <div class="odr-content rounded">
-                  <h4 class="mb-2">Ruben Franci</h4>
-                  <p class="mb-1">Developer</p>
-                  <p class="mb-3">rubenfranci@gmail.com</p>
-                  <ul class="list-unstyled mb-3">
-                    <li class="bg-secondary-light rounded-circle iq-card-icon-small mr-4"><i class="ri-mail-open-line m-0"></i></li>
-                    <li class="bg-primary-light rounded-circle iq-card-icon-small mr-4"><i class="ri-chat-3-line m-0"></i></li>
-                    <li class="bg-success-light rounded-circle iq-card-icon-small"><i class="ri-phone-line m-0"></i></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="card-transparent card-block card-stretch card-height">
-            <div class="card-body text-center p-0">
-              <div class="item">
-                <div class="odr-img">
-                  <img src="assets/images/user/03.jpg" class="img-fluid rounded-circle avatar-90 m-auto" alt="image">
-                </div>
-                <div class="odr-content rounded">
-                  <h4 class="mb-2">Ruben Franci</h4>
-                  <p class="mb-1">Developer</p>
-                  <p class="mb-3">rubenfranci@gmail.com</p>
-                  <ul class="list-unstyled mb-3">
-                    <li class="bg-secondary-light rounded-circle iq-card-icon-small mr-4"><i class="ri-mail-open-line m-0"></i></li>
-                    <li class="bg-primary-light rounded-circle iq-card-icon-small mr-4"><i class="ri-chat-3-line m-0"></i></li>
-                    <li class="bg-success-light rounded-circle iq-card-icon-small"><i class="ri-phone-line m-0"></i></li>
+                    <li class="bg-secondary-light rounded-circle iq-card-icon-small mr-4"><i class="ri-user-2-line m-0"></i></li>
+                    <li class="bg-primary-light rounded-circle iq-card-icon-small mr-4"><i class="ri-file-user-fill m-0"></i></li>
+                    <li class="bg-success-light rounded-circle iq-card-icon-small"><i class="ri-user-unfollow-line m-0"></i></li>
                   </ul>
                 </div>
               </div>
