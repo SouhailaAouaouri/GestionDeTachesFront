@@ -20,7 +20,7 @@ export class TaskService {
     return this.http.post(this.apiUrl,task);
   }
   markAsDone(taskId:any){
-    return this.http.put(this.apiUrl+'/'+taskId+'markAsCompleted',null);
+    return this.http.put(this.apiUrl+'/'+taskId+'/markAsCompleted',null);
   }
   assiggnLabelToTask(taskId:any,labelId:any){
     return this.http.put(this.apiUrl+'/'+taskId+'/assignLabel/'+labelId,null);

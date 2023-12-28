@@ -20,6 +20,9 @@ export class ListTasksComponent implements OnInit, AfterViewInit {
         "startDate": "2023-12-20",
         "dueDate": "2023-12-27",
         "completed": false,
+        "level": 'High',
+        "periorty": 'Must',
+
         "labels": [
           {
             "id": 1,
@@ -36,6 +39,8 @@ export class ListTasksComponent implements OnInit, AfterViewInit {
         "startDate": "2023-12-20",
         "dueDate": "2023-12-27",
         "completed": false,
+        "level": 'Low',
+        "periorty": 'Will',
         "labels": [
           {
             "id": 2,
@@ -55,4 +60,5 @@ export class ListTasksComponent implements OnInit, AfterViewInit {
     });
   }
 
+  protected readonly Date = Date;
 }
