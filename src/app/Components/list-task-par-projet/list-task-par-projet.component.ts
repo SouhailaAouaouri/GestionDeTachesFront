@@ -35,4 +35,7 @@ export class ListTaskParProjetComponent implements OnInit {
     this.done.sort();
   }
 
+  onClear() {
+
+  }
 }

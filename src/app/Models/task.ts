@@ -12,6 +12,8 @@ export class Task {
     projectName: any;
     startDate: any;
     archived:any;
+    periorty:any
+    level:any
 
 
 }

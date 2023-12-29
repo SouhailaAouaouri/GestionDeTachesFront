@@ -1,4 +1,9 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Task} from "../../Models/task";
+import {TaskService} from "../../Services/task.service";
+import {ProjectService} from "../../Services/project.service";
+import {Projet} from "../../Models/projet";
+import {ActivatedRoute} from "@angular/router";
 declare var $: any; // Import jQuery
 
 @Component({
@@ -7,45 +12,25 @@ declare var $: any; // Import jQuery
   styleUrls: ['./list-all-tasks-user.component.css']
 })
 export class ListAllTasksUserComponent implements OnInit , AfterViewInit{
-  tasks: any[] = [];
-  constructor() { }
+  tasks: Task[] = [];
+  projetId: any;
+  listTask: Task[] = new Array<Task>();
+
+  constructor(private route: ActivatedRoute,
+              private taskService :TaskService,
+              private projectService:ProjectService) { }
 
   ngOnInit(): void {
-
-    this.tasks = [
-      {
-        "id": 1,
-        "title": "Task 1",
-        "description": "Description for Task 1",
-        "startDate": "2023-12-20",
-        "dueDate": "2023-12-27",
-        "completed": false,
-        "labels": [
-          {
-            "id": 1,
-            "name": "Label 1"
-          }
-        ],
-        "projectId": 1,
-        "projectName": "Sample Project"
-      },
-      {
-        "id": 2,
-        "title": "Task 2",
-        "description": "Description for Task 2",
-        "startDate": "2023-12-20",
-        "dueDate": "2023-12-27",
-        "completed": false,
-        "labels": [
-          {
-            "id": 2,
-            "name": "Label 2"
-          }
-        ],
-        "projectId": 1,
-        "projectName": "Sample Project"
-      }
-    ]
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+      this.projetId = id;
+        this.taskService.getTasksByProjectId(this.projetId).subscribe(tasks => {
+          this.listTask=tasks as Task[];
+          console.log('listTask  :', this.listTask);
+        },error => {
+          console.log(error);
+        })
+    });
   }
 
   ngAfterViewInit(): void {
