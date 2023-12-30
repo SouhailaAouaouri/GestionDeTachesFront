@@ -40,11 +40,11 @@ export class TaskService {
   searchTask(keyword :string){
     return this.http.get(this.apiUrl+'/search?keyword='+keyword);
   }
-  getLabels(){
-    return this.http.get(this.apiUrl+'/labels');
-  }
   getTaskByLabelId(labelId:any){
     return this.http.get(this.apiUrl+'/label/'+labelId+'/tasks');
+  }
+  getTaskByStatusAndMemberId(status :string,memberId :number){
+    return this.http.get(this.apiUrl+'/getByStatusAndMemberId?status='+status+'&memberId='+memberId);
   }
   getFilterTasks(labelIds:number,keyword:string,projectId:number,completed:boolean,
                  minStartDate: string,maxStartDate:string,

@@ -13,67 +13,54 @@ export class TokenStorageService {
   }
 
 
-  public savedata(data: any): void {
-    localStorage.setItem(TOKEN_KEY, data.access_token);
+  public saveData(token: any): void {
+    const decodedToken = this.decode(token);
+    if (decodedToken) {
+    localStorage.setItem(TOKEN_KEY, token);
+    localStorage.setItem(USER_KEY, token.sub); // Assurez-vous que votre API renvoie également l'id
+    localStorage.setItem(ROLE_KEY, token.role); // Assurez-vous que votre API renvoie également le rôle
   }
 
-  handle(data:any) {
-    this.savedata(data);
   }
 
-  getToken() {
+  getToken(): string | null {
     return localStorage.getItem(TOKEN_KEY);
   }
 
-  getId(): number {
-    return Number(localStorage.getItem(USER_KEY));
+  getId(): number | null {
+    const userId = localStorage.getItem(USER_KEY);
+    return userId ? Number(userId) : null;
   }
-  getRole() {
+
+  getRole(): string | null {
     return localStorage.getItem(ROLE_KEY);
   }
-  remove() {
-    localStorage.removeItem(TOKEN_KEY);
 
+
+  remove(): void {
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(USER_KEY);
+    localStorage.removeItem(ROLE_KEY);
   }
 
-  decode(payload:any) {
+  decode(payload: any): any {
     return JSON.parse(atob(payload));
   }
 
-  payload(token:any) {
+  payload(token: string): any {
     const payload = token.split('.')[1];
     return this.decode(payload);
   }
 
-
-  isValid() {
+  isValid(): boolean {
     const token = this.getToken();
     const id = this.getId();
 
-    if (token) {
-
+    if (token && id) {
       const payload = this.payload(token);
-      if (payload) {
-        return id === payload.id;
-      }
+      return id === payload.id;
     }
+
     return false;
   }
-
-  getInfos() {
-
-    const token = this.getToken();
-
-    if (token) {
-      const payload = this.payload(token);
-      return payload ? payload : null;
-    }
-
-    return null;
-  }
-
-
-
-
-
 }

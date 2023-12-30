@@ -9,15 +9,11 @@
       <div
         cdkDropList
         #todoList="cdkDropList"
-        [cdkDropListData]="todo"
+        [cdkDropListData]="listTaskToDO"
         [cdkDropListConnectedTo]="[inProgressList, doneList]"
         class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let task of todo" cdkDrag>{{ task }}
-          <div class="icons-container">
-            <i class="ri-eye-2-line m-1" style="font-size:28px" aria-hidden="true"></i>
-          </div>
-
+        (cdkDropListDropped)="drop(listTaskToDO,$event)">
+        <div class="example-box" *ngFor="let task of listTaskToDO" cdkDrag data-toggle="modal" href="#show-task-modal" (click)="getDetailsTask(task.id)">{{ task.title }}
         </div>
       </div>
     </div>
@@ -27,14 +23,11 @@
       <div
         cdkDropList
         #inProgressList="cdkDropList"
-        [cdkDropListData]="inProgress"
+        [cdkDropListData]="listTaskInProgress"
         [cdkDropListConnectedTo]="[todoList, doneList]"
         class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let task of inProgress" cdkDrag>{{ task }}
-          <div class="icons-container">
-            <i class="fa fa-pencil-square-o" style="font-size:28px" aria-hidden="true"></i>
-          </div>
+        (cdkDropListDropped)="drop(listTaskInProgress,$event)">
+        <div class="example-box" *ngFor="let task of listTaskInProgress" cdkDrag data-toggle="modal" href="#show-task-modal" (click)="getDetailsTask(task.id)">{{task.title }}
         </div>
       </div>
     </div>
@@ -44,16 +37,12 @@
       <div
         cdkDropList
         #doneList="cdkDropList"
-        [cdkDropListData]="done"
+        [cdkDropListData]="listTaskDone"
         [cdkDropListConnectedTo]="[todoList, inProgressList]"
         class="example-list"
-        (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let task of done" cdkDrag>
-          {{ task }}
-          <div class="icons-container">
-            <i class="fa fa-pencil-square-o" style="font-size:28px" aria-hidden="true" data-toggle="modal" href="#show-task-modal"></i>
-          </div>
-
+        (cdkDropListDropped)="drop(listTaskDone,$event)">
+        <div class="example-box" *ngFor="let task of listTaskDone" cdkDrag data-toggle="modal" href="#show-task-modal" (click)="getDetailsTask(task.id)">
+          {{ task.title }}
         </div>
       </div>
     </div>
@@ -63,7 +52,7 @@
   <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header d-block text-center pb-3 border-bttom">
-        <h3 class="modal-title" id="exampleModalCenterTitle">New Task</h3>
+        <h3 class="modal-title" id="exampleModalCenterTitle">Details Task</h3>
       </div>
       <div class="modal-body">
           <div class="row">
@@ -71,7 +60,7 @@
             <div class="col-lg-12">
               <div class="form-group mb-3">
                 <label  class="h5">Task Name</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" readonly [value]="selectedTask.title">
 
               </div>
             </div>
@@ -79,55 +68,39 @@
             <div class="col-lg-12">
               <div class="form-group mb-3">
                 <label  class="h5">Description</label>
-                <textarea class="form-control"
-                          rows="3"></textarea>
+                <textarea class="form-control" [value]="selectedTask.description" readonly  rows="3"></textarea>
               </div>
             </div>
             <!-- start date  -->
             <div class="col-lg-6">
               <div class="form-group mb-3">
-                <label  class="h5">Start Dates*</label>
-                <input type="date" class="form-control" >
+                <label  class="h5">Start Dates</label>
+                <input type="date" class="form-control" readonly [value]="selectedTask.startDate">
               </div>
-            </div>
-            <!-- membres  -->
-            <div class="col-lg-6">
-              <div class="form-group mb-3">
-                <label class="h5">Assigned to</label>
-                <select name="type" class="selectpicker form-control" data-style="py-0">
-                  <option>Memebers</option>
-                  <option>Kianna Septimus</option>
-                  <option>Jaxson Herwitz</option>
-                  <option>Ryan Schleifer</option>
-                </select>
-              </div>
-            </div>
-            <!--  labels -->
-            <!-- 1 : Levels -->
-            <div class="col-lg-6">
-              <div class="form-group mb-3">
-                <label class="h5">Level</label>
-                <select name="type" class="selectpicker form-control" data-style="py-0">
-                  <option>High</option>
-                  <option>Normal</option>
-                  <option>Low</option>
-                </select>
-              </div>
-            </div>
-            <!-- 2 : periorty MoSCoW Method -->
-            <div class="col-lg-6">
-              <div class="form-group mb-3">
-                <label class="h5">Periorty with MoSCoW Method</label>
-                <select name="type" class="selectpicker form-control" data-style="py-0">
-                  <option>Must</option><!-- must-have-->
-                  <option>Should</option><!-- should-have-->
-                  <option>Could</option> <!-- could-have-->
-                  <option>Will</option> <!-- won't-have (this time)-->
-                </select>
 
+            </div>
+            <!-- due date  -->
+            <div class="col-lg-6">
+              <div class="form-group mb-3">
+                <label  class="h5">Start Dates</label>
+                <input type="date" class="form-control" readonly [value]="selectedTask.dueDate">
+              </div>
+
+            </div>
+            <!-- periorty  -->
+            <div class="col-lg-6">
+              <div class="form-group mb-3">
+                <label class="h5">Periorty</label>
+                <input readonly class="form-control" [value]="selectedTask.periorty"/>
               </div>
             </div>
-
+            <!--  level -->
+            <div class="col-lg-6">
+              <div class="form-group mb-3">
+                <label class="h5">Level </label>
+                <input readonly class="form-control" [value]="selectedTask.level"/>
+              </div>
+            </div>
             <!-- btn save and cancel -->
             <div class="col-lg-12">
               <div class="d-flex flex-wrap align-items-ceter justify-content-center mt-4">

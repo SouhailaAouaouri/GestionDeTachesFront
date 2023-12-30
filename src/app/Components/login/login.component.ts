@@ -45,9 +45,9 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.login).subscribe(
         data => {
           console.log('data :', data);
+          this.tokenStorage.saveData(data);
           this.showerrormessage = false;
           this.showsuccessmessage = true;
-          this.tokenStorage.savedata(data);
           setTimeout(() => {
             if(this.role==="USER")
             {
