@@ -13,9 +13,12 @@ import {ProjectDetailsComponent} from "./Components/project-details/project-deta
 import {LoginComponent} from "./Components/login/login.component";
 import {HidenTasksAdminComponent} from "./Components/hiden-tasks-admin/hiden-tasks-admin.component";
 import {EmployeesAdminComponent} from "./Components/employees-admin/employees-admin.component";
+import {SignUpComponent} from "./Components/sign-up/sign-up.component";
 
 const routes: Routes = [
   { path: '', component:LoginComponent},
+  { path: 'signUp', component:SignUpComponent},
+
   { path: 'homeAdmin', component:HomeComponent,children:[
       {path:'DashbordAdmin',component:DashboardAdminComponent},
       {path:'listProjet',component:ListprojetComponent},

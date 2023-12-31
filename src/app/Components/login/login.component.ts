@@ -78,5 +78,8 @@ export class LoginComponent implements OnInit {
   onClear() {
     this.formService.formGroupLogin.reset();
   }
+  goToRegister() {
+    this.router.navigate(['signUp']);
+  }
 
 }

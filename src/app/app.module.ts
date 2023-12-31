@@ -24,6 +24,7 @@ import { ProjectDetailsComponent } from './Components/project-details/project-de
 import { LoginComponent } from './Components/login/login.component';
 import { HidenTasksAdminComponent } from './Components/hiden-tasks-admin/hiden-tasks-admin.component';
 import { EmployeesAdminComponent } from './Components/employees-admin/employees-admin.component';
+import { SignUpComponent } from './Components/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { EmployeesAdminComponent } from './Components/employees-admin/employees-
     LoginComponent,
     HidenTasksAdminComponent,
     EmployeesAdminComponent,
+    SignUpComponent,
 
   ],
   imports: [
