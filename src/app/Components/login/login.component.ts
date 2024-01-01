@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
     this.formService.formGroupLogin.reset();
   }
   goToRegister() {
-    this.router.navigate(['signUp']);
+    this.router.navigateByUrl('signUp');
   }
 
 }

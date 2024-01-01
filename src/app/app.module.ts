@@ -25,6 +25,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { HidenTasksAdminComponent } from './Components/hiden-tasks-admin/hiden-tasks-admin.component';
 import { EmployeesAdminComponent } from './Components/employees-admin/employees-admin.component';
 import { SignUpComponent } from './Components/sign-up/sign-up.component';
+import { LabelsComponent } from './Components/labels/labels.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SignUpComponent } from './Components/sign-up/sign-up.component';
     HidenTasksAdminComponent,
     EmployeesAdminComponent,
     SignUpComponent,
+    LabelsComponent,
 
   ],
   imports: [

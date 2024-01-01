@@ -10,6 +10,7 @@ export class FormControlerService {
               private fbAddProject: FormBuilder,
               private fbAddTask: FormBuilder,
               private fbAddEmp: FormBuilder,
+              private fbLabel: FormBuilder,
 
   ) { }
 
@@ -34,6 +35,13 @@ export class FormControlerService {
     passwordEmp: ['', [Validators.required,Validators.minLength(3), Validators.maxLength(20)]],
 
   });
+  formGroupLabel = this.fbLabel.group({
+    nameLabel: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20),Validators.pattern('[a-zA-Z ]*')]],
+  });
+get nameLabel(){
+  return this.formGroupLabel.get('nameLabel')
+}
+
   /* add employee controle */
   get nameEmp() {
     return this.formGroupAddEmp.get('nameEmp');

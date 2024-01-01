@@ -12,8 +12,6 @@ import {MemberService} from "../../Services/member.service";
 })
 export class SignUpComponent implements OnInit {
   member:User=new User();
-  roleUser:string='';
-
   constructor(public formService:FormControlerService,
               private router:Router,
               private memberService :MemberService,
@@ -38,7 +36,6 @@ export class SignUpComponent implements OnInit {
 
   onClear() {
     this.member=new User();
-    this.roleUser=''
     this.formService.formGroupAddEmp.reset();
   }
   onSubmit() {
@@ -49,13 +46,13 @@ export class SignUpComponent implements OnInit {
       this.member.password=this.formService.formGroupAddEmp.value.passwordEmp;
       this.member.username=this.formService.formGroupAddEmp.value.usernameEmp;
       this.member.phone=this.formService.formGroupAddEmp.value.phoneEmp;
-      this.member.role=this.roleUser;
+      this.member.role="USER";
       console.log('user to add :',this.member);
       this.memberService.addMember(this.member).subscribe(data=> {
         console.log('data : ', data);
         this.member = new User();
         setTimeout(() => {
-          window.location.reload();
+          this.goToLogin();
         }, 1000);
       },error => {
         console.log(error);
@@ -64,10 +61,5 @@ export class SignUpComponent implements OnInit {
       console.log('invalid form');
       this.validateAllFormFields(this.formService.formGroupAddEmp);
     }
-  }
-
-  affecterRole(event: any) {
-    this.roleUser = event.target.value;
-    console.log('Rôle sélectionné :', this.roleUser);
   }
 }

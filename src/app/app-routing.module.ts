@@ -14,6 +14,7 @@ import {LoginComponent} from "./Components/login/login.component";
 import {HidenTasksAdminComponent} from "./Components/hiden-tasks-admin/hiden-tasks-admin.component";
 import {EmployeesAdminComponent} from "./Components/employees-admin/employees-admin.component";
 import {SignUpComponent} from "./Components/sign-up/sign-up.component";
+import {LabelsComponent} from "./Components/labels/labels.component";
 
 const routes: Routes = [
   { path: '', component:LoginComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
 
   { path: 'homeAdmin', component:HomeComponent,children:[
       {path:'DashbordAdmin',component:DashboardAdminComponent},
+      {path:'Label',component:LabelsComponent},
       {path:'listProjet',component:ListprojetComponent},
       {path:'detailsProject/:id',component:ProjectDetailsComponent},
       {path:'listTasks',component:ListTasksComponent},
